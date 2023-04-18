@@ -20,7 +20,7 @@ Tome en cuenta que el operador para el cálculo de potencia es "^".
 ## Parte 2
 Implemente programas en Haskell que permitan lo siguiente:
 
-6. Calcular el área de un cuadrado dado el largo y el ancho.
+6. Calcular el área de un rectángulo dado el largo y el ancho.
 8. Calcular el factorial de un número.
 9. Determinar el valor de la expresión dado el valor de n:
     ````
