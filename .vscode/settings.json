@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*.hs": "haskell",
-        "iostream": "cpp",
-        "new": "cpp"
-    }
-}
