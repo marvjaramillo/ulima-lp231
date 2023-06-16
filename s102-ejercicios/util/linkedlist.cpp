@@ -1,9 +1,10 @@
+/*
+    Implementa los metodos definidos en la cabecera (.hpp)
+*/
 #include <iostream>
+#include "linkedlist.hpp"
 using namespace std;
-struct Node{
-    int value;
-    Node* next;
-};
+
 
 //Para poder crear un nodo
 Node* createNode(int value){
@@ -21,7 +22,6 @@ void addFirst(Node* &head, int value){
     }
     //Se modificara el nodo cabecera (sera el nuevo nodo)
     head = newNode;
-    cout << "Direccion de head en addFirst: " << head << endl;
 }
 
 //Agrega un elemento al final
@@ -65,7 +65,6 @@ void addBefore(Node* &head, int reference, int value){
     }
 }
 
-//Elimina el nodo que tenga el valor dado como dato
 void remove(Node* &head, int element){
     /*
         Necesitamos un puntero que apunte al nodo de referencia y uno
@@ -90,26 +89,12 @@ void remove(Node* &head, int element){
         delete ptr;
     }
 }
-
 //Imprime los elementos
-void print(Node* head){
+void printList(Node* head){
     Node* ptr = head;
     while(ptr != nullptr){
         cout << ptr->value << " -> ";
         ptr = ptr->next;
     }
     cout << "null" << endl;
-}
-
-int main(){
-    Node* head = createNode(0);
-    addLast(head, 100);
-    addLast(head, 200);
-    addLast(head, 300);
-    addFirst(head, -100);
-    print(head);
-    addBefore(head, 200, 150);
-    remove(head, -100);
-    print(head);
-    return 0;
 }

@@ -1,3 +1,8 @@
+/*
+Archivo que contiene la implementacion completa de listas
+(definicion de funciones e implementacion)
+Utilizar solo para pruebas.
+*/
 #include <iostream>
 using namespace std;
 struct Node{
@@ -21,7 +26,6 @@ void addFirst(Node* &head, int value){
     }
     //Se modificara el nodo cabecera (sera el nuevo nodo)
     head = newNode;
-    cout << "Direccion de head en addFirst: " << head << endl;
 }
 
 //Agrega un elemento al final
@@ -99,17 +103,4 @@ void print(Node* head){
         ptr = ptr->next;
     }
     cout << "null" << endl;
-}
-
-int main(){
-    Node* head = createNode(0);
-    addLast(head, 100);
-    addLast(head, 200);
-    addLast(head, 300);
-    addFirst(head, -100);
-    print(head);
-    addBefore(head, 200, 150);
-    remove(head, -100);
-    print(head);
-    return 0;
 }
