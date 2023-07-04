@@ -1,4 +1,4 @@
-#include "C:\Users\marvj\OneDrive\Documentos\ULIMA\ulima-lp231-1\s102-ejercicios\util\tmp\linkedlist_full.hpp"
+#include "util/tmp/linkedlist_full.hpp"
 #include <iostream>
 using namespace std;
 
