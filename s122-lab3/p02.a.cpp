@@ -28,10 +28,10 @@ int main(){
     addLast(head, p1);
     addLast(head, p2);
     addLast(head, p3);
-    cout << "Lista original: ";
+    cout << "Lista original: " << endl;
     print(head);
     sortByPriority(head);
-    cout << "Lista ordenada por prioridad: ";
+    cout << "Lista ordenada por prioridad: " << endl;
     print(head);
     return 0;
 }
