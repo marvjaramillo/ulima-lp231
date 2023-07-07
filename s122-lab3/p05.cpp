@@ -18,6 +18,7 @@ void removeAllOccurrences(ProcessNode* &head, int processId){
         }
         ptr = next;
     }
+    //Tarea: Eliminar la memoria asignada a los nodos
 }
 
 

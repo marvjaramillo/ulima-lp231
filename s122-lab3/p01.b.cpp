@@ -22,6 +22,7 @@ int main(){
     addLast(head, p1);
     addLast(head, p2);
     addLast(head, p3);
-    printProcesses(head, 0);
+    print(head);
+    printProcesses(head, 2);
     return 0;
 }

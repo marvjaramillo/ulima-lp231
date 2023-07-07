@@ -28,9 +28,10 @@ int* readArrayElements(int n){
 }
 
 void showValueAndAddress(int* array, int position){
-    array += (position - 1);
-    cout << "Valor del elemento en la posicion " << position << ": " << *array << endl;
-    cout << "Direccion de memoria: " << array;
+    int* ptr = array;
+    ptr += (position - 1);
+    cout << "Valor del elemento en la posicion " << position << ": " << *ptr << endl;
+    cout << "Direccion de memoria: " << ptr;
 }
 
 int main(){
