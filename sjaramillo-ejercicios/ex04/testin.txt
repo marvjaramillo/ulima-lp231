@@ -1,0 +1,213 @@
+agregarArchivo(int tamanoArchivo): Esta función agrega un archivo al sistema de archivos actualizando el espacio utilizado y 
+la cantidad de archivos. Recuerda verificar si el tamaño del archivo excede el espacio disponible
+
+void agregarArchivo(int tamanoArchivo) {
+    if (tamanoArchivo > espacioDisponible) {
+        cout << "No hay suficiente espacio disponible para agregar el archivo." << endl;
+        return;
+    }
+
+    espacioUtilizado += tamanoArchivo;
+    espacioDisponible -= tamanoArchivo;
+    cantidadArchivos++;
+
+    cout << "Archivo agregado exitosamente." << endl;
+}
+
+
+crearCarpeta(): Esta función crea una nueva carpeta en el sistema de archivos actualizando la cantidad de carpeta
+
+void crearCarpeta() {
+    cantidadCarpetas++;
+
+    cout << "Carpeta creada exitosamente." << endl;
+}
+
+obtenerEspacioDisponible(): Esta función retorna el espacio disponible en el sistema de archivos
+
+int obtenerEspacioDisponible() {
+    return espacioDisponible;
+}
+
+
+Estas funciones utilizan los atributos de espacioUtilizado, cantidadArchivos y cantidadCarpetas para realizar 
+las operaciones correspondientes. Puedes llamar a estas funciones desde main() después de crear una instancia de 
+SistemaArchivos. Por ejemplo:
+
+
+int main() {
+    SistemaArchivos* A1 = new SistemaArchivos("Directorio Raiz 1", 1000, 100);
+    A1->print();
+
+    A1->agregarArchivo(200);
+    A1->crearCarpeta();
+
+    int espacioDisponible = A1->obtenerEspacioDisponible();
+    cout << "Espacio disponible: " << espacioDisponible << endl;
+
+    delete A1;
+
+    return 0;
+}
+
+this how it would look
+Directorio raíz: Directorio Raiz 1
+Espacio total: 1000
+Espacio utilizado: 200
+Espacio disponible: 800
+Cantidad de archivos: 1
+Cantidad de carpetas: 1
+Tamaño máximo de archivo: 100
+
+
+void eliminarArchivo(int tamanoArchivo) {
+    if (tamanoArchivo > espacioUtilizado) {
+        cout << "El archivo no existe en el sistema de archivos." << endl;
+        return;
+    }
+
+    espacioUtilizado -= tamanoArchivo;
+    espacioDisponible += tamanoArchivo;
+    cantidadArchivos--;
+
+    cout << "Archivo eliminado exitosamente." << endl;
+}
+
+
+void renombrarDirectorioRaiz(string nuevoDirectorioRaiz) {
+    directorioRaiz = nuevoDirectorioRaiz;
+
+    cout << "Directorio raíz renombrado exitosamente." << endl;
+}
+
+
+void moverArchivo(int tamanoArchivo, SistemaArchivos& destino) {
+    if (tamanoArchivo > espacioDisponible) {
+        cout << "No hay suficiente espacio disponible en el sistema actual." << endl;
+        return;
+    }
+
+    if (tamanoArchivo > destino.espacioDisponible) {
+        cout << "No hay suficiente espacio disponible en el sistema de destino." << endl;
+        return;
+    }
+
+    espacioUtilizado -= tamanoArchivo;
+    espacioDisponible += tamanoArchivo;
+    cantidadArchivos--;
+
+    destino.espacioUtilizado += tamanoArchivo;
+    destino.espacioDisponible -= tamanoArchivo;
+    destino.cantidadArchivos++;
+
+    cout << "Archivo movido exitosamente al sistema de destino." << endl;
+}
+
+
+void fusionarSistemas(SistemaArchivos& otroSistema) {
+    if (otroSistema.espacioUtilizado > espacioDisponible) {
+        cout << "No hay suficiente espacio disponible para fusionar los sistemas." << endl;
+        return;
+    }
+
+    espacioUtilizado += otroSistema.espacioUtilizado;
+    espacioDisponible -= otroSistema.espacioUtilizado;
+    cantidadArchivos += otroSistema.cantidadArchivos;
+    cantidadCarpetas += otroSistema.cantidadCarpetas;
+
+    cout << "Sistemas fusionados exitosamente." << endl;
+
+    // Reiniciar los atributos del otro sistema
+    otroSistema.espacioUtilizado = 0;
+    otroSistema.espacioDisponible = otroSistema.espacioTotal;
+    otroSistema.cantidadArchivos = 0;
+    otroSistema.cantidadCarpetas = 0;
+}
+
+int main() {
+    SistemaArchivos* sistema1 = new SistemaArchivos("Directorio Raiz 1", 1000, 100);
+    SistemaArchivos* sistema2 = new SistemaArchivos("Directorio Raiz 2", 2000, 200);
+
+    sistema1->agregarArchivo(300);
+    sistema1->crearCarpeta();
+    sistema2->agregarArchivo(400);
+    sistema2->crearCarpeta();
+
+    sistema1->print();
+    sistema2->print();
+
+    sistema1->fusionarSistemas(*sistema2);
+
+    sistema1->print();
+    sistema2->print();
+
+    delete sistema1;
+    delete sistema2;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void buscarArchivo(string nombreArchivo) {
+    bool archivoEncontrado = false;
+
+    // Buscar el archivo en el sistema
+    for (int i = 0; i < cantidadArchivos; i++) {
+        // Verificar si el nombre del archivo coincide
+        if (nombreArchivo == "Archivo" + to_string(i + 1)) {
+            cout << "El archivo " << nombreArchivo << " fue encontrado en el sistema." << endl;
+            archivoEncontrado = true;
+            break;
+        }
+    }
+
+    if (!archivoEncontrado) {
+        cout << "El archivo " << nombreArchivo << " no fue encontrado en el sistema." << endl;
+    }
+}
+
+int main() {
+    SistemaArchivos* sistema = new SistemaArchivos("Directorio Raiz", 10000, 1000);
+
+    sistema->agregarArchivo(500);
+    sistema->agregarArchivo(700);
+    sistema->agregarArchivo(900);
+
+    sistema->print();
+
+    sistema->buscarArchivo("Archivo2");  // Search for the file "Archivo2"
+    sistema->buscarArchivo("Archivo4");  // Search for the file "Archivo4"
+
+    delete sistema;
+
+    return 0;
+}
+
+Directorio raiz: Directorio Raiz
+Espacio total: 10000
+Espacio utilizado: 2100
+Espacio disponible: 7900
+Cantidad de archivos: 3
+Cantidad de carpetas: 0
+Tamano maximo de archivo: 1000
+
+El archivo Archivo2 fue encontrado en el sistema.
+El archivo Archivo4 no fue encontrado en el sistema.
+
